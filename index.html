@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Welcome</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@500;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <main class="card">
+
+    <!-- VIEW 1: log in -->
+    <form id="login" class="view show" novalidate>
+      <h1>Welcome!</h1>
+
+      <div class="field">
+        <i>👤</i>
+        <input name="identifier" placeholder="username or email" autocomplete="username">
+      </div>
+
+      <div class="field">
+        <i>🔒</i>
+        <input name="password" type="password" placeholder="password" autocomplete="current-password">
+        <button type="button" class="eye" aria-label="Show password">👁</button>
+      </div>
+
+      <p class="msg"></p>
+      <button class="btn">Log In</button>
+      <p class="alt">Doesn't have an account yet?<br><a href="#" data-go="signup">Sign up</a></p>
+    </form>
+
+    <!-- SIGN UP -->
+    <form id="signup" class="view" novalidate>
+      <h1>Join us!</h1>
+
+      <div class="field">
+        <i>👤</i>
+        <input name="username" placeholder="username" autocomplete="username">
+      </div>
+
+      <div class="field">
+        <i class="mail">✉️</i>
+        <input name="email" type="email" placeholder="email" autocomplete="email">
+      </div>
+
+      <div class="field">
+        <i>🔒</i>
+        <input name="password" type="password" placeholder="password" autocomplete="new-password">
+        <button type="button" class="eye" aria-label="Show password">👁</button>
+      </div>
+
+      <div class="field">
+        <i>🔒</i>
+        <input name="confirm" type="password" placeholder="confirm password" autocomplete="new-password">
+      </div>
+
+      <p class="msg"></p>
+      <button class="btn">Sign Up</button>
+      <p class="alt">Already have an account?<br><a href="#" data-go="login">Log in</a></p>
+    </form>
+
+    <!-- VIEW 3: logged in -->
+    <section id="home" class="view">
+      <h1>Hello!</h1>
+      <p id="who"></p>
+      <button class="btn" id="out">Log Out</button>
+    </section>
+
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,149 @@
+/* style.css: 1 Variables · 2 Page and card · 3 Form fields · 4 Buttons/links · 5 Animations */
+
+/* ---------- 1. Variables ---------- */
+:root {
+  --bg-image: url("aurora.jpg");   /* save your photo next to this file */
+  --teal: #12908f;
+  --danger: #ff6b6b;
+  --link: #2f86ff;
+  --muted: #9b9fa3;
+  --field: #ebebeb;
+  --btn: #12404a;
+  --btn-hover: #1a5866;
+}
+
+* { box-sizing: border-box; }
+
+/* ---------- 2. Page and card ---------- */
+body {
+  min-height: 100dvh;
+  margin: 0;
+  padding: 16px;
+  display: grid;
+  place-items: center;
+  font: 500 1rem "DM Sans", sans-serif;
+  color: #fff;
+  background:
+    var(--bg-image) center bottom / cover no-repeat fixed,
+    linear-gradient(#01060c, #04323a);
+}
+
+.card {
+  width: min(100%, 480px);
+  padding: clamp(28px, 6vw, 56px) clamp(20px, 6vw, 60px);
+  border-radius: 48px;
+  background: rgba(2, 10, 12, .62);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, .5);
+  animation: rise .8s ease both;
+}
+
+.view { display: none; text-align: center; }
+
+.view.show {
+  display: block;
+  animation: rise .5s ease both;
+}
+
+h1 {
+  margin: 0 0 28px;
+  font: 700 clamp(3rem, 11vw, 4.4rem) "Dancing Script", cursive;
+  color: var(--teal);
+}
+
+/* ---------- 3. Form fields ---------- */
+.field {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  height: 60px;
+  margin: 20px 0;
+  padding: 0 18px;
+  border: 2px solid transparent;
+  border-radius: 99px;
+  background: var(--field);
+  transition: .25s;
+}
+
+.field:focus-within {
+  border-color: var(--teal);
+  box-shadow: 0 0 0 4px rgba(18, 144, 143, .3);
+}
+
+.field.bad {
+  border-color: var(--danger);
+  animation: shake .4s;
+}
+
+.field i,
+.eye {
+  font-style: normal;
+  filter: grayscale(1) opacity(.8);
+}
+
+.field i.mail {
+  filter: grayscale(1) brightness(.7);
+}
+
+.field input {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  outline: 0;
+  background: none;
+  font: inherit;
+  color: #222;
+}
+
+.eye {
+  border: 0;
+  background: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.msg {
+  min-height: 1.3em;
+  margin: 0 0 8px;
+  font-size: .9rem;
+  color: var(--danger);
+}
+
+/* ---------- 4. Buttons and links ---------- */
+.btn {
+  min-width: 170px;
+  height: 54px;
+  border: 0;
+  border-radius: 99px;
+  background: var(--btn);
+  color: #fff;
+  font: 700 1.1rem "DM Sans", sans-serif;
+  cursor: pointer;
+  transition: .25s;
+}
+
+.btn:hover {
+  background: var(--btn-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, .4);
+}
+
+.btn:disabled { opacity: .6; cursor: wait; }
+
+.alt {
+  margin-top: 30px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+.alt a { color: var(--link); }
+
+/* ---------- 5. Animations ---------- */
+@keyframes rise {
+  from { opacity: 0; transform: translateY(20px); }
+}
+
+@keyframes shake {
+  25% { transform: translateX(-8px); }
+  75% { transform: translateX(8px); }
+}
