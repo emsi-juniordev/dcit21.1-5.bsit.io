@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Welcome</title>
+  <title>TEAM NETFLIX</title>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@500;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
@@ -25,6 +25,8 @@
         <input name="password" type="password" placeholder="password" autocomplete="current-password">
         <button type="button" class="eye" aria-label="Show password">👁</button>
       </div>
+
+      <p class="alt forgot"><a href="#" id="forgot">Forgot password?</a></p>
 
       <p class="msg"></p>
       <button class="btn">Log In</button>
@@ -69,6 +71,55 @@
     </section>
 
   </main>
+
+  <!-- FORGOT PASSWORD: modal with 2 steps (request code -> new password) -->
+  <div id="reset" class="modal" hidden>
+    <div class="card" role="dialog" aria-modal="true" aria-label="Reset password">
+      <button type="button" class="x" id="reset-close" aria-label="Close">✕</button>
+
+      <!-- STEP 1: who forgot? -->
+      <form id="reset-request" class="view show" novalidate>
+        <h1>Reset</h1>
+        <p class="hint">Enter your username or email and we'll send you a 6-digit code.</p>
+
+        <div class="field">
+          <i>👤</i>
+          <input name="identifier" placeholder="username or email" autocomplete="username">
+        </div>
+
+        <p class="msg"></p>
+        <button class="btn">Send Code</button>
+      </form>
+
+      <!-- STEP 2: code + new password -->
+      <form id="reset-confirm" class="view" novalidate>
+        <h1>Verify</h1>
+        <p class="hint">Code sent to <b id="sent-to"></b></p>
+        <!-- DEMO ONLY: remove this line when a real API emails the code -->
+        <p class="demo">Demo code: <b id="demo-code"></b></p>
+
+        <div class="field">
+          <i>🔑</i>
+          <input name="code" inputmode="numeric" maxlength="6" placeholder="6-digit code" autocomplete="one-time-code">
+        </div>
+
+        <div class="field">
+          <i>🔒</i>
+          <input name="password" type="password" placeholder="new password" autocomplete="new-password">
+          <button type="button" class="eye" aria-label="Show password">👁</button>
+        </div>
+
+        <div class="field">
+          <i>🔒</i>
+          <input name="confirm" type="password" placeholder="confirm password" autocomplete="new-password">
+        </div>
+
+        <p class="msg"></p>
+        <button class="btn">Reset Password</button>
+        <p class="alt">Didn't get it?<br><a href="#" id="resend">Resend code</a></p>
+      </form>
+    </div>
+  </div>
   <script src="script.js"></script>
 </body>
 </html>

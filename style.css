@@ -1,10 +1,11 @@
-/* style.css: 1 Variables · 2 Page and card · 3 Form fields · 4 Buttons/links · 5 Animations */
+/* style.css: 1 Variables · 2 Page and card · 3 Form fields · 4 Buttons/links · 5 Forgot-password modal · 6 Animations */
 
 /* ---------- 1. Variables ---------- */
 :root {
-  --bg-image: url("aurora.jpg");   /* save your photo next to this file */
+  --bg-image: url("aurora.jpg");   /* portrait photo: used on portrait screens */
   --teal: #12908f;
   --danger: #ff6b6b;
+  --ok: #3ecf9a;
   --link: #2f86ff;
   --muted: #9b9fa3;
   --field: #ebebeb;
@@ -12,10 +13,22 @@
   --btn-hover: #1a5866;
 }
 
+/* Landscape screens: use aurora-wide.jpg (16:9, 2560x1440+) if it exists.
+   A missing file is skipped and the portrait photo shows instead. */
+@media (min-aspect-ratio: 1/1) {
+  :root { --bg-image: url("aurora-wide.jpg"), url("aurora.jpg"); }
+}
+
 * { box-sizing: border-box; }
+
+html {
+  min-height: 100%;
+  background-color: #04161c;       /* matches the gradient end, no white flash */
+}
 
 /* ---------- 2. Page and card ---------- */
 body {
+  min-height: 100vh;               /* fallback for old browsers */
   min-height: 100dvh;
   margin: 0;
   padding: 16px;
@@ -23,9 +36,10 @@ body {
   place-items: center;
   font: 500 1rem "DM Sans", sans-serif;
   color: #fff;
-  background:
-    var(--bg-image) center bottom / cover no-repeat fixed,
-    linear-gradient(#01060c, #04323a);
+  background-image: var(--bg-image), linear-gradient(#01060c, #04323a);
+  background-size: cover;
+  background-position: center center, center bottom, center;
+  background-repeat: no-repeat;
 }
 
 .card {
@@ -62,7 +76,7 @@ h1 {
   border: 2px solid transparent;
   border-radius: 99px;
   background: var(--field);
-  transition: .25s;
+  transition: .15s;
 }
 
 .field:focus-within {
@@ -138,7 +152,61 @@ h1 {
 
 .alt a { color: var(--link); }
 
-/* ---------- 5. Animations ---------- */
+.alt.forgot {
+  margin: -8px 0 8px;
+  padding-right: 18px;
+  text-align: right;
+  font-size: .9rem;
+}
+
+/* ---------- 5. Forgot-password modal ---------- */
+.msg.ok { color: var(--ok); }
+
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  display: grid;
+  place-items: center;
+  padding: 16px;
+  overflow: auto;
+  background: rgba(0, 0, 0, .6);
+}
+
+.modal[hidden] { display: none; }
+
+.modal .card { position: relative; }
+
+.x {
+  position: absolute;
+  top: 18px;
+  right: 22px;
+  border: 0;
+  background: none;
+  color: var(--muted);
+  font-size: 1.3rem;
+  cursor: pointer;
+}
+
+.x:hover { color: #fff; }
+
+.hint {
+  margin: 0 0 18px;
+  font-size: .95rem;
+  color: var(--muted);
+}
+
+.demo {
+  margin: 0 0 6px;
+  color: var(--teal);
+}
+
+.demo b {
+  font-size: 1.2rem;
+  letter-spacing: .25em;
+}
+
+/* ---------- 6. Animations ---------- */
 @keyframes rise {
   from { opacity: 0; transform: translateY(20px); }
 }
